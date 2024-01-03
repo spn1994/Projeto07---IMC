@@ -1,0 +1,187 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    font-size: 62.5%;
+
+    /* cores */
+    --tt-heading: #0C3440;/* TT titulo, eu quem colocou esse nome, cor titulo */
+    
+    --tt-label: #00453A;/* cor palavra peso */
+    --tt-input: #212529;/* cor input */
+    --ot-input: #02799D;/* cor da linha do quadrado input, quando clicado */
+    --bd-input: rgba(73, 80, 87, 0.3);/* borda do input */
+    --tt-placeholder: rgba(73, 80, 87, 0.5);/* texto place holder */
+    --bg-input: #DCE2E9;/* cor do fundo do input */
+
+    --tt-button: white;/* texto do botao */
+    --bg-button: #02799D;/* cor de fundo do botao */
+    --bg-button-hover: #01475c;
+
+    --bg-error: #F03E3E;/* cor fundo erro */
+    --tt-error: white;/* texto error */
+}   
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #040924;/* cor do fundo */
+}
+
+body, input, button {
+    /* dessa maneira pega tamanho de todos */
+    font-size: 1.6rem;
+    line-height: 2rem;
+}
+
+.container {
+    height: 100vh;/* vai pegar toda tela */
+    display: grid;/* só muda a maneira que está sendo apresentado */
+    place-content: center;/* foi destravada quando coloquei display grid */
+}
+
+.card {
+    padding: 4.8rem 6.4rem 6.4rem;/* preenchmento */
+    background: white;
+    max-width: 42.8rem; /* largura do quadrado */
+    margin-inline: auto;/* jogou automaticamente pro centro */
+
+    box-shadow: 0 .2rem .4rem rgba(0,0,0,0.1);
+    border-radius: .6rem;
+}
+
+.title {
+    font-size: 3.2rem;
+    line-height: 4rem;
+    color: var(--tt-heading);/* foi criando antes as variaveis */
+}
+
+form  {
+    width: 30rem;
+}
+
+form h1 {
+    margin-bottom: 3.2rem; /* separei do title pra modificar tranquilamente */
+}
+
+form label {
+    /* label tem display inline, eu preciso colocar block */
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+    color: var(--tt-label);/* foi criando antes as variaveis */
+    margin-bottom: .8rem;
+    display: block; /* label é display in line, por isso coloca block */
+}
+
+form input {
+    width: 100%;
+    border: 1px solid var(--bd-input);
+    background: var(--bg-input);
+    padding: 1.6rem;
+    border-radius: .4rem;
+}
+
+form input:focus {
+    outline: 2px solid var(--ot-input); /* cor input */
+}
+
+form input::placeholder {
+    color: var(--tt-placeholder); /* eu critei cor */
+}
+
+.input-wrapper + .input-wrapper {
+    /* coloquei as dois pra ele colocar margem somente no de cima */
+    margin-top: 1.6rem;
+}
+
+form button {
+    margin-top: 3.2rem;
+    padding: 1.6rem;
+    width: 100%;
+
+    border-radius: .4rem;
+    border: none;/* tira  a borda */
+    background-color: var(--bg-button);
+    color: var(--tt-button);
+
+    display: flex; /* pra colocar no centro */
+    align-items: center;
+    justify-content: center;
+    gap: .8rem;
+
+    font-weight: bold;
+
+    cursor: pointer; /* mãozinha quando passa em cima */
+
+    transition: background .3s;
+}
+
+form button:hover {
+    /* escurece quando passa por cima */
+    background: var(--bg-button-hover);
+}
+
+/* modal */
+.modal-wrapper.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-wrapper {
+    position: absolute; /* ele é absoluto pq cria uma nova camada */
+    inset: 0; /* propiedade que fez a tela de tras ficar escura */
+    background: rgba(0, 0, 0, 0.7);
+
+    display: grid; 
+    place-content: center;
+
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal {
+    position: relative;
+}
+
+.modal button {
+    background: none;
+    border: none;
+
+    position: absolute;/* absoluto em relação ao pai q é modal de cima */
+    top: 1.6rem;
+    right: 1.6rem;
+
+    cursor: pointer;
+
+    transition: transform .3s; /* pra tranformar X (tempo) */
+}
+
+.modal button:hover {
+    transform: scale(1.1);
+}
+
+/* alert error */
+.alert-error.open {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.alert-error {
+    position: absolute;/* absolute fuca em cima de tudo */
+    background-color: var(--bg-error);
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: var(--tt-error);
+    padding: .8rem 0;
+    font-weight: bold;
+
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-30px);/* faz caixinha sumir */
+    transition: transform .5s;
+}
